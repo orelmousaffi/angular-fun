@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<head>
+	<title>Demo Application #1</title>
+
+	<!-- Include all CSS !-->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+
+	<!-- Include Angular JS !-->
+	<script type="text/javascript" src="js/angular/angular.min.js"></script>
+	<script type="text/javascript" src="js/angular/exampleApp.js"></script>
+	<script type="text/javascript" src="js/angular/controllers.js"></script>
+	<script type="text/javascript" src="js/angular/filters.js"></script>
+	<script type="text/javascript" src="js/angular/services.js"></script>
+	<script type="text/javascript" src="js/angular/directives.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="panel">
+			<div class="page-header">
+				<h3>AngularJS App</h3>
+			</div>
+
+			<h4 ng-controller="dayCtrl" highlight="Monday">Today is {{day || "(unknown)" | dayName}}</h4>
+			<h4 ng-controller="tomorrowCtrl">Tomorrow is {{tomorrow || "(unknown)" | dayName}}</h4>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<head>
+	<title>Demo Application #1</title>
+
+	<!-- Include all CSS !-->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+
+	<!-- Include Angular JS !-->
+	<script type="text/javascript" src="js/angular/angular.min.js"></script>
+	<script type="text/javascript" src="js/angular/exampleApp.js"></script>
+	<script type="text/javascript" src="js/angular/controllers.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div id="todoPanel" class="panel" ng-controller="defaultCtrl">
+			<h3 class="panel-header">To Do List</h3>
+
+			<!-- The two ways of applying directives: as Attributes or as a class !-->
+			There are <span class="ng-bind: todos.length"></span> items.
+			<br/>
+			There are <span ng-bind="todos.length"></span> items.
+			<hr/>
+
+			<!-- 
+				There are multiple ways of applying one-way bindings between data 
+				and markup. These are shown below: 
+			!-->
+			There are <span class="ng-bind: todos.length"></span> items.
+			<br/>
+			There are <span ng-bind="todos.length"></span> items.
+			<br/>
+			There are {{ todos.length }} items.
+			<br/>
+			<div ng-bind-template="First {{todos[0].action}}. Second {{todos[1].action}}"></div>
+			<br/>
+			<div ng-non-bindable>Angular.js uses {{ and }} characters for templates.</div>
+			<hr/>
+
+			<!-- 
+				Two-way data bindings will track changes on both ends. This is shown below
+				with the ng-model directive
+			!-->
+			<div class="well">
+				<div>The first item is: {{ todos[0].action }}</div>
+			</div>
+
+			<div class="form-group well">
+				<label for="firstItem">Set First Item:</label>
+				<input type="text" class="form-control" name="firstItem" ng-model="todos[0].action"/>
+			</div>
+			<hr/>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Action</th>
+						<th>Done</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr ng-repeat="item in todos">
+						<td ng-repeat="prop in item">{{prop}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<hr/>
+
+			<!-- 
+				An alternaitive to the ng-repeat directive. Allowing to access keys
+			!-->
+			<table class="table">
+				<thead>
+					<tr>
+						<th ng-repeat="(key, value) in todos[0]">{{key}}</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr ng-repeat="item in todos">
+						<td ng-repeat="prop in item">{{prop}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<hr/>
+
+
+		</div>
+	</div>
+</body>
+</html>

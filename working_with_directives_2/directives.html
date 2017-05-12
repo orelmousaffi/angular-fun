@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<head>
+	<title>Demo Application #1</title>
+
+	<!-- Include all CSS !-->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+
+	<!-- Include Angular JS !-->
+	<script type="text/javascript" src="js/angular/angular.min.js"></script>
+	<script type="text/javascript" src="js/angular/exampleApp.js"></script>
+	<script type="text/javascript" src="js/angular/controllers.js"></script>
+
+	<style>
+		tr.Red { background-color: lightcoral; }
+		tr.Green { background-color: lightgreen;}
+		tr.Blue { background-color: lightblue; }
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div id="todoPanel" class="panel" ng-controller="defaultCtrl">
+			<h3 class="panel-header">To Do List</h3>
+
+			<div class="well form-group">
+				<input type="checkbox" ng-model="todos[2].complete" />
+				<lable>Item 3 is completed</lable>
+			</div>
+
+
+			<div class="row well">
+				<div class="col-xs-6" ng-repeat="(key, value) in settings">
+					<h4>{{ key }}</h4>
+					<div class="form-group" ng-repeat="button in buttonNames">
+						<input type="radio" ng-model="settings[key]" value="{{button}}">
+						<label>{{button}}</label>
+					</div>
+				</div>
+			</div>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th ng-repeat="(key, value) in todos[0]">{{ key }}</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<!--
+						Showing how to use the ng-hide and ng-show
+					!-->
+					<tr ng-repeat="item in todos | filter: {complete: false}" 
+						ng-class="rowColor"
+						ng-mouseenter="handleEvent($event)"
+						ng-mouseleave="handleEvent($event)">
+						<td>{{ $index + 1 }}</td>
+						<td>{{ item.action }}</td>
+						<td>{{ item.complete }}</td>
+					</tr>
+
+					<!--
+						Showing how to use the ng-if instead of the example above
+					
+					<tr ng-repeat="item in todos">
+						<td>{{ $index + 1 }}</td>
+						<td>{{ item.action }}</td>
+						<td ng-if="!item.complete">(Incomplete)</td>
+						<td ng-if="item.complete">(Completed)</td>
+					</tr>
+					!-->
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
